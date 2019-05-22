@@ -6,11 +6,12 @@ import (
 	"crypto/rand"
 	"fmt"
 	"io"
+	"io/ioutil"
 )
 
 func main() {
 	fmt.Println("Encryption program v0.01")
-	text := []byte("My secret stuff")
+	text := []byte("you are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great julia")
 	key := []byte("passphrasewhichneedstobe32bytes!")
 
 	//generates a new AES cipher using our 32 byte key
@@ -40,4 +41,10 @@ func main() {
 	//for a given key.
 	fmt.Println(gcm.Seal(nonce, nonce, text, nil))
 
+	//The WriteFile method returns an error if unsuccessful
+	err = ioutil.WriteFile("myfile.data", gcm.Seal(nonce, nonce, text, nil), 0777)
+
+	if err != nil {
+		fmt.Println(err)
+	}
 }
