@@ -11,7 +11,7 @@ func main() {
 	fmt.Println("Decryption program v0.01")
 	key := []byte("passphrasewhichneedstobe32bytes!")
 
-	ciphertext, err := ioutil.ReadFile("HIPAA.jpeg")
+	ciphertext, err := ioutil.ReadFile("encryptedhipaa")
 	if err != nil {
 		fmt.Println(err)
 	}
@@ -42,6 +42,8 @@ func main() {
 		fmt.Println(err)
 	}
 
-	fmt.Println(string(plaintext))
+	//fmt.Println(string(plaintext))
+
+	err = ioutil.WriteFile("fred", plaintext, 0777)
 
 }

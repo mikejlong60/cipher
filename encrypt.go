@@ -11,9 +11,10 @@ import (
 
 func main() {
 	fmt.Println("Encryption program v0.01")
-	text := []byte("you are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great julia")
+	//text := []byte("you are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great juliayou are great julia")
 	key := []byte("passphrasewhichneedstobe32bytes!")
 
+	text, err := ioutil.ReadFile("otis.txt") //"HIPAA.jpeg")
 	//generates a new AES cipher using our 32 byte key
 	c, err := aes.NewCipher(key)
 	if err != nil {
@@ -39,10 +40,10 @@ func main() {
 	//additional data and appends the result to dst, returning the updated
 	//slice.  The nonce must be NonceSize() bytes long and unique for all time,
 	//for a given key.
-	fmt.Println(gcm.Seal(nonce, nonce, text, nil))
+	//	fmt.Println(gcm.Seal(nonce, nonce, text, nil))
 
 	//The WriteFile method returns an error if unsuccessful
-	err = ioutil.WriteFile("myfile.data", gcm.Seal(nonce, nonce, text, nil), 0777)
+	err = ioutil.WriteFile("encryptedhipaa", gcm.Seal(nonce, nonce, text, nil), 0777)
 
 	if err != nil {
 		fmt.Println(err)
